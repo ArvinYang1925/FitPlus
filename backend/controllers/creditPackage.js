@@ -6,10 +6,8 @@ const appError = require("../utils/appError");
 // 取得購買方案列表
 async function getAll(req, res, next) {
   try {
-    // const packages = await dataSource.getRepository("CreditPackage").find({
-    //   select: ["id", "name", "credit_amount", "price"],
-    // });
     const packages = await dataSource.getRepository("CreditPackage").find();
+
     res.status(200).json({
       status: "success",
       data: packages,
@@ -55,17 +53,14 @@ async function post(req, res, next) {
       });
       return;
     }
-    // const newPackage = creditPackageRepo.create({
-    //   name,
-    //   credit_amount,
-    //   price,
-    // });
+
     // 如果只是新增並寫入資料庫，其實直接用 save() 就可以
     const result = await creditPackageRepo.save({
       name,
       credit_amount,
       price,
     });
+
     res.status(200).json({
       status: "success",
       data: result,
@@ -86,12 +81,6 @@ async function deletePackage(req, res, next) {
       });
       return;
     }
-
-    // const result = await dataSource.getRepository("CreditPackage").delete(creditPackageId);
-    // if (result.affected === 0) {
-    //   next(appError(400, "ID錯誤"));
-    //   return;
-    // }
 
     const result = await dataSource.getRepository("CreditPackage").delete(creditPackageId);
 

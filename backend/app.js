@@ -9,8 +9,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // 3. 引入路由
-const apiRoutes = require("./routes/api");
+const apiRoutes = require("./routes/api_template");
 const creditPackageRoutes = require("./routes/creditPackage");
+const skillRoutes = require("./routes/skill");
 
 // 4. 註冊 middleware
 app.use(express.json());
@@ -20,6 +21,8 @@ app.use(cors());
 // 5. 註冊路由
 app.use("/api", apiRoutes);
 app.use("/api/credit-package", creditPackageRoutes);
+app.use("/api/skill", skillRoutes);
+
 app.get("/", (req, res) => {
   res.send("Welcome to FitPlus API!");
 });
