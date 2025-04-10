@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { DataSource } = require("typeorm");
 
-const AppDataSource = new DataSource({
+const dataSource = new DataSource({
   type: "postgres",
   host: process.env.DB_HOST, // 資料庫主機
   port: process.env.DB_PORT, // 預設端口
@@ -14,4 +14,4 @@ const AppDataSource = new DataSource({
   migrations: ["migrations/*.js"], // 遷移檔案路徑（未來使用）
 });
 
-module.exports = AppDataSource;
+module.exports = { dataSource };
